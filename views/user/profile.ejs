@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        .invalid{
+            border-color: red;
+        }
+        .btn-sm{
+            width: 200px;
+        }
+
+        img{
+            float: right;
+        }
+
+        .b1{
+            position: relative;
+        }
+
+        .b1 h1{
+            position: absolute;
+            top: 50px;
+        }
+
+        .b1 h3{
+            position: absolute;
+            top:100px;
+        }
+        .card{
+            transition: 0.3s;
+        }
+        .card:hover{
+            box-shadow: 0 0px 15px 1px lightgray;
+        }
+        .jumbotron{
+            margin-bottom: 0px !important;
+        }
+    </style>
+    </head>
+    <body>
+           
+            <%- include('../includes/navigation.ejs') %>
+            <div class="container p-5">
+                <div>
+                    <div class="text-center display-4">
+                        My Profile
+                    </div>
+                    <hr>
+                </div>
+    <div class="card profile-section p-3 my-3">
+        <div class="b1">
+    <h1>Username: <%= user.userName %></h1>
+    <h3>Email : <%= user.email %></h3>
+    </div>
+    <div class="card-image">
+            <img src="<%= user.profilePic %>" class="image-fluid" style="height: 200px" alt="<%= user.title %>">
+    </div>
+    <a class="btn btn-sm btn-secondary" href="/user/<%= user._id %>/edit">Edit-Profile</a>
+</div>
+<div class="container p-5">
+        <div>
+            <div class="text-center display-4">
+                My Blogs
+            </div>
+            <hr>
+        </div>
+    <main>
+            <% if (blogs.length > 0) { %>
+                <div class="grid">
+                    <% for (let i of blogs) { %>
+                        <article class="card product-item my-5">
+                            <header class="card-header">
+                                <h1>
+                                    <%= i.title %>
+                                </h1>
+                            </header>
+                            <div class="card-body">
+                                <h3>
+                                    <%= i.description %>
+                                </h2>
+                                <p>
+                                    <%= i.content %>
+                                </p>
+                                <br>
+    
+                            </div>
+                            <div class="card-actions text-center">
+                                <a class="btn btn-outline-info my-3 mx-3" href="/blog/<%= i._id %>">Details</a>
+                                <input type="hidden" name="blogId" value="<%= i._id %>">
+                        </div>
+                        </article>
+                        <% } %>
+                </div>
+                <% } else { %>
+                    <h1>No Blogs Found!</h1>
+                    <% } %>
+                </div>
+        </main>
+        </div>
+        <footer>
+                <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                          <h1 class="display-4">BlogON!</h1>
+                          <p class="lead">Developed by &copy;Akhilesh Gandotra</p>
+                          <p>Email: akhilgandotra2@gmail.com</p>
+                        </div>
+                      </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        </body></html>
